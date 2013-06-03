@@ -188,6 +188,8 @@ With this simpled method you can have other forms on page which sends data\_grid
 ## TODO
 
 * More tests
+* Rails4 branch
+* Rows grouping
 
 ## Contributing 
 
