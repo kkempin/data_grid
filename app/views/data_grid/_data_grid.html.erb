@@ -1,0 +1,101 @@
+<div class="data_grid">
+  <table class="data_grid" width="99%" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <% data_grid.columns.each do |col| %>
+          <th class="<%= col.filter_active? ? "filter" : '' %>">
+            <%= data_grid_header(data_grid, col) %>
+          </th>
+        <% end %>
+      </tr>
+
+      <% if data_grid.filters? %>
+        <tr class="filters">
+          <% data_grid.columns.each do |col| %>
+            <td class="<%= col.filter_active? ? "filter" : '' %>">
+              <%= data_grid_filter(data_grid, col) %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+
+      <% if data_grid.out_data.empty? %>
+        <tr>
+          <td colspan="<%= data_grid.columns.size %>" class="grid_no_data data_grid_row">
+            <br />
+            <%= t('data_grid.no_data') %>
+            <br />
+            <br />
+          </td>
+        </tr>
+      <% else %>
+        <% data_grid.out_data.each_with_index do |row, row_index| %>
+          <tr>
+            <% data_grid.columns.each_with_index do |col, col_index| %>
+              <% cell = row[col_index].is_a?(Array) ? row[col_index][0] : row[col_index] %>
+              <td class="<%= (row_index.odd? ? "odd " : '') + (col.css_class).to_s + ' data_grid_row'  %>" style="<%= col.style ? "#{(data_grid.row_styles[row_index].to_s if data_grid.row_styles).to_s + ';' + col.style}" : data_grid.row_styles ? "#{data_grid.row_styles[row_index]}" : '' %>">
+                <%= col.formatter ? send("data_grid_formatter_#{col.formatter}", cell) : cell %>
+              </td>
+            <% end %>
+          </tr> 
+          <% unless data_grid.hidden_row.nil? %>
+            <tr>
+              <td colspan="<%= data_grid.columns.size %>">
+                <%= data_grid.out_hidden_rows[row_index] %>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <% if data_grid.summary? %>
+        <tr class="summary">
+          <% data_grid.columns.each_with_index  do |col, col_index| %>
+            <td>
+              <%= col.summary_formatter ? send("data_grid_formatter_#{col.summary_formatter}", data_grid.summaries[col_index].to_s) : data_grid.summaries[col_index].to_s  %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+
+      <% if data_grid.global_summary? %>
+        <tr class="summary">
+          <% data_grid.columns.each_with_index  do |col, col_index| %>
+            <td>
+              <%= col.summary_formatter ? send("data_grid_formatter_#{col.summary_formatter}", data_grid.global_summaries[col_index].to_s) : data_grid.global_summaries[col_index].to_s %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+
+      <% if data_grid.footer? %>
+        <tfoot>
+          <tr>
+            <td colspan="<%= data_grid.columns.size + 1 %>">
+              <div class="data_grid_fl">
+                <%= t('data_grid.results') %>:
+                <%=  data_grid.entries_from %>
+                - 
+                <%= data_grid.entries_to %>
+                /
+                <%= data_grid.total %>
+              </div>
+              <% if data_grid.export_enabled %>
+                <div class="data_grid_fl data_grid_lmargin">
+                  <%= data_grid_export_link(data_grid) %>
+                </div>
+              <% end %>
+              <div class="data_grid_fr">
+                <%= t('data_grid.per_page') %>:
+                <%= data_grid_per_page_selector(data_grid) %>
+              </div>
+              <div class="pagination data_grid_fr">
+                <%= data_grid_pager(data_grid) %>
+              </div>
+            </td>
+          </tr>
+        </tfoot>
+      <% end %>
+    </tbody>
+  </table>
+</div>

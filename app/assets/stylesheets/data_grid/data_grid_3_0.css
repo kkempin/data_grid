@@ -1,0 +1,90 @@
+div.data_grid {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+
+table.data_grid {
+    border: 1px solid #808080;
+    border-collapse: separate;
+    width: 100%;
+}
+
+table.data_grid th {
+    text-align: left;
+    background-color: #C6D4E4;
+    padding: 6px 3px;
+    color: #000;
+    line-height: 18px;
+}
+
+table.data_grid td {
+    border-width: 1px;
+    padding: 3px;
+    border-style: none;
+    border-color: #011b36;
+    color: #000;
+    font-size: 11px;
+    line-height: 18px;
+    padding-left: 4px;
+}
+
+table.data_grid td.odd { background-color: #F0FFF0; }
+
+table.data_grid tr.filters td { 
+  background-color: #E9F0F4; 
+  border-bottom: 1px solid #C0C0C0;
+}
+
+table.data_grid a, table.data_grid a:active, table.data_grid a:focus { color: #12c; }
+
+table.data_grid tr:hover td.data_grid_row { background-color: #ddd; }
+
+table.data_grid td.grid_no_data {
+  font-size:16px; 
+  font-weight:bold;
+}
+
+table.data_grid tr.summary td { background-color: #E9F0F4; }
+
+table.data_grid tfoot tr td { background-color: #E9F0F4; }
+
+table.data_grid a.sorting.down {
+  padding-right: 13px;
+  background: url("/images/data_grid/sort_down.gif") right 4px no-repeat; 
+}
+
+table.data_grid a.sorting.up {
+  padding-right: 13px;
+  background: url("/images/data_grid/sort_up.gif") right 4px no-repeat; 
+}
+
+table.data_grid tfoot td div { margin: 0; padding: 0; }
+table.data_grid tfoot td .data_grid_fl { float:left; }
+table.data_grid tfoot td .data_grid_fr { float:right; }
+table.data_grid tfoot td .data_grid_lmargin { margin-left: 20px; }
+
+table.data_grid tfoot td .pagination { margin-right: 40px; }
+table.data_grid tfoot td ul.data_grid_pagination {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  
+  *float: left;
+}
+table.data_grid tfoot td ul.data_grid_pagination li {
+  display: inline;
+  font-size: 14px;
+  font-weight: bold;
+  float: none;
+  margin: 0 2px;
+}
+table.data_grid tfoot td ul.data_grid_pagination a {
+  display: inline-block;
+  font-weight: bold;
+  font-size: 12px;
+
+  *display: block;
+}
+
+table.data_grid form input.data_grid_filter_input { width: 48px; }
+

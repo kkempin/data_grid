@@ -1,0 +1,10 @@
+en:
+  data_grid:
+    no_data: No data ...
+    results: Results
+    per_page: Per page
+    filter_date_from: From
+    filter_date_to: To
+    all_options: All
+    option_true: 'Yes'
+    option_false: 'No'
